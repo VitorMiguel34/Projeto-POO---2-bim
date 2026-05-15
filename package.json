@@ -1,0 +1,13 @@
+{
+  "name": "projeto_poo",
+  "version": "1.0.0",
+  "description": "Projeto para o segundo bimestre da disciplina de Programação Orientada a Objetos",
+  "main": "main.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
