@@ -7,5 +7,8 @@ Integrantes do grupo:<br>
 
 Diagrama de classes
 
-<img width="1640" height="1718" alt="diagramaUML" src="https://github.com/user-attachments/assets/4ff020b1-4992-43bb-a756-45f863718f7f" />
+<img width="1625" height="1544" alt="diagrama-atualizado" src="https://github.com/user-attachments/assets/4b3c54a9-8029-462d-a011-d47da633eec6" />
+
+
+
 
