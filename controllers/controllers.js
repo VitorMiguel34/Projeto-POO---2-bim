@@ -1,5 +1,5 @@
 import Usuario from '../classes/usuario.js'
-import Regiao from '../classes/região.js'
+import Regiao from '../classes/regiao.js'
 import Sensor from '../classes/sensor.js'
 import Leitura from '../classes/leitura.js'
 import Alerta from "../classes/alerta.js"
