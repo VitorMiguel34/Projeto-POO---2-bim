@@ -1,0 +1,17 @@
+[
+  ["Sensor de Temperatura", true],
+  ["Sensor de Umidade", false],
+  ["Sensor de Presença (PIR)", true],
+  ["Sensor Ultrassônico de Distância", true],
+  ["Sensor de Luminosidade (LDR)", false],
+  ["Sensor de Pressão Atmosférica", true],
+  ["Sensor de Fluxo de Água", false],
+  ["Sensor de Gás e Fumaça (MQ-2)", true],
+  ["Sensor de Chuva", false],
+  ["Sensor de Corrente Elétrica", true],
+  ["Sensor de Giroscópio e Acelerômetro", true],
+  ["Sensor de Batimento Cardíaco", false],
+  ["Sensor de PH do Solo", true],
+  ["Sensor de Proximidade Indutivo", false],
+  ["Sensor de Nível de Líquido", true]
+]

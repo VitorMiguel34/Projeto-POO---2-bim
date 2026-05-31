@@ -6,5 +6,6 @@ export default class Usuario{
         Usuario.id += 1
         this.nome = nome
         this.ativo = ativo
+        this.regiao = regiao
     }
 }
