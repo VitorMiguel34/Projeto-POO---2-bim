@@ -7,7 +7,8 @@ Integrantes do grupo:<br>
 
 Diagrama de classes
 
-<img width="1625" height="1544" alt="diagrama-poo-atualizado" src="https://github.com/user-attachments/assets/d1b75b9f-dddb-455c-a07f-47ea7f01c2f6" />
+<img width="1625" height="1544" alt="diagrama-projeto-poo" src="https://github.com/user-attachments/assets/a998e033-ca8f-434a-9d5b-6ecdd148936b" />
+
 
 
 
