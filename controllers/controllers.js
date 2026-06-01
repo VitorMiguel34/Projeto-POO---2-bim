@@ -12,11 +12,11 @@ class Controller{
     #leituras
     #alertas
     constructor(){
-        this.#usuarios = []
-        this.#regioes = []
-        this.#sensores = []
-        this.#leituras = []
-        this.#alertas = []
+        this.#usuarios = {}
+        this.#regioes = {}
+        this.#sensores = {}
+        this.#leituras = {}
+        this.#alertas = {}
     }
 
     apresentarMenu(){
