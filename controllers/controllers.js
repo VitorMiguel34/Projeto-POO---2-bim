@@ -3,6 +3,11 @@ import Regiao from '../classes/regiao.js'
 import Sensor from '../classes/sensor.js'
 import Leitura from '../classes/leitura.js'
 import Alerta from "../classes/alerta.js"
+import UsuarioController from './usuarioController.js'
+import RegiaoController from '../classes/regiao.js'
+import LeituraController from './leituraController.js'
+import AlertaController from './alertaController.js'
+import SensorController from './sensorController.js'
 
 
 class Controller{
@@ -12,11 +17,11 @@ class Controller{
     #leituras
     #alertas
     constructor(){
-        this.#usuarios = {}
-        this.#regioes = {}
-        this.#sensores = {}
-        this.#leituras = {}
-        this.#alertas = {}
+        this.#usuarios = new UsuarioController()
+        this.#regioes = new RegiaoController()
+        this.#sensores = new SensorController()
+        this.#leituras = new LeituraController()
+        this.#alertas = new AlertaController()
     }
 
     apresentarMenu(){

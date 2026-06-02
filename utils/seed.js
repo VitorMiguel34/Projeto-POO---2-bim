@@ -4,17 +4,13 @@ import Regiao from '../classes/regiao.js'
 import Sensor from '../classes/sensor.js'
 import Leitura from '../classes/leitura.js'
 
-/*ERRO CRÍTICO DESSE MÓDULO: caminho dos arquivos de dados
-OBS: Ao executar em outro nível de diretório qualquer função desse arquivo
-gerará um erro
-*/
-
 
 function criarRegioes(){
     const informacoes = JSON.parse(fs.readFileSync("../dados/regioes.json"))
     const regioes = []
     for(let info of informacoes){
-        const novaRegiao = new Regiao(info[0], info[1])
+        infos = {"nome": info[0], "descricao": info[1]}
+        const novaRegiao = new Regiao(infos)
         regioes.push(novaRegiao)
     }
 
@@ -30,7 +26,8 @@ function criarSensores(){
 
     const sensores = []
     for(let info of informacoes){
-        const novoSensor = new Sensor(info[0], info[1], info[2])
+        infos = {"tipo": info[0], "ativo": info[1], "regiao": info[2]}
+        const novoSensor = new Sensor(infos)
         sensores.push(novoSensor)
     }
 
@@ -46,7 +43,8 @@ function criarLeituras(){
 
     const leituras = []
     for(let info of informacoes){
-        const novaLeitura = new Leitura(info[0], info[1])
+        const infos = {"sensor": info[0], "valorRegistrado": info[1]}
+        const novaLeitura = new Leitura(infos)
         leituras.push(novaLeitura)
     }
 

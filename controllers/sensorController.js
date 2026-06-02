@@ -16,7 +16,7 @@ export default class SensorController{
         }
     }
 
-    criarSensor(tipo, ativo, regiao){
+    criarSensor({tipo, ativo, regiao}){
         const novoSensor = new Sensor(tipo,ativo,regiao)
         this.#sensores[novoSensor.id] = novoSensor
     }
