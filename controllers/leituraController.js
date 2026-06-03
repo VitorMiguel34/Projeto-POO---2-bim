@@ -16,7 +16,7 @@ export default class LeituraController{
         }
     }
 
-    adicionarLeitura(sensor, valorRegistrado){
+    adicionarLeitura({sensor, valorRegistrado}){
         const novaLeitura = new Leitura(sensor, valorRegistrado)
         this.#leituras[novaLeitura.id] = novaLeitura
     }

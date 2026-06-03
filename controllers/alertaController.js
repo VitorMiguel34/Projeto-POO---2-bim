@@ -16,7 +16,7 @@ export default class AlertaController{
         }
     }
 
-    criarAlerta(leitura, regiao, mensagem){
+    criarAlerta({leitura, regiao, mensagem}){
         const novoAlerta = new Alerta(leitura, regiao, mensagem)
         this.#alertas[novoAlerta.id] = novoAlerta
     }

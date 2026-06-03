@@ -2,7 +2,7 @@ export default class Leitura{
     static id = 0
     #dataHora
 
-    constructor(sensor, valorRegistrado){
+    constructor({sensor, valorRegistrado}){
         this.id = Leitura.id
         Leitura.id += 1
         this.sensor = sensor

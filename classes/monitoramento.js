@@ -1,7 +1,7 @@
 export default class Monitoramento{
     static id = 0
 
-    constructor(sensores, alertas){
+    constructor({sensores, alertas}){
         this.id = Monitoramento.id
         Monitoramento.id += 1
         this.sensores = sensores 
