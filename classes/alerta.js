@@ -5,12 +5,12 @@ export default class Alerta{
     #mensagem
     #regiao
 
-    constructor({leitura, regiao, mensagem}){
+    constructor({mensagem, leitura, regiao}){
         this.id = Alerta.id
         Alerta.id += 1
+        this.#mensagem = mensagem
         this.#leitura = leitura
         this.#regiao = regiao
-        this.#mensagem = mensagem
         this.#dataHora = new Date()
     }
 

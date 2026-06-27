@@ -1,13 +1,8 @@
-import Usuario from '../classes/usuario.js'
-import Regiao from '../classes/regiao.js'
-import Sensor from '../classes/sensor.js'
-import Leitura from '../classes/leitura.js'
-import Alerta from "../classes/alerta.js"
 import UsuarioController from './usuarioController.js'
-import RegiaoController from '../classes/regiao.js'
 import LeituraController from './leituraController.js'
 import AlertaController from './alertaController.js'
 import SensorController from './sensorController.js'
+import seed from '../utils/seed.js'
 
 
 class Controller{
@@ -16,12 +11,11 @@ class Controller{
     #sensores
     #leituras
     #alertas
-    constructor(){
-        this.#usuarios = new UsuarioController()
-        this.#regioes = new RegiaoController()
-        this.#sensores = new SensorController()
-        this.#leituras = new LeituraController()
-        this.#alertas = new AlertaController()
+    constructor(usuarios, sensores, leituras, alertas){
+        this.#usuarios = new UsuarioController(usuarios)
+        this.#sensores = new SensorController(sensores)
+        this.#leituras = new LeituraController(leituras)
+        this.#alertas = new AlertaController(alertas)
     }
 
     apresentarMenu(){
@@ -30,7 +24,7 @@ class Controller{
 }
 
 export default function main(){
-
-    const controller = new Controller()
+    const dados = seed()
+    const controller = new Controller([], dados.sensores, dados.leituras, dados.alertas)
     controller.apresentarMenu()
 }

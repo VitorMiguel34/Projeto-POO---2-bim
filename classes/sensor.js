@@ -7,5 +7,10 @@ export default class Sensor{
         this.tipo = tipo
         this.ativo = ativo
         this.regiao = regiao
+        this.leituras = {}
+    }
+
+    registrarLeitura(novaLeitura){
+        this.leituras[novaLeitura.id] = novaLeitura
     }
 }
