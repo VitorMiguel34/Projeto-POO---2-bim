@@ -7,10 +7,11 @@ import Sensor from '../classes/sensor.js'
 import Leitura from '../classes/leitura.js'
 import Alerta from '../classes/alerta.js'
 import Monitoramento from '../classes/monitoramento.js'
+import Usuario from '../classes/usuario.js'
 import { info } from 'console'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
-const dadosDir = path.join(__dirname, '../dados')
+const dadosDir = path.join(__dirname, '../seeds')
 
 function criarRegioes(){
     const informacoes = JSON.parse(fs.readFileSync(path.join(dadosDir, 'regioes.json')))
@@ -53,17 +54,27 @@ function criarAlertas(leituras, regioes){
     return alertas
 }
 
+function criarUsuarios(){
+    const usuarios = JSON.parse(fs.readFileSync(path.join(dadosDir, 'usuarios.json')))
+    
+    usuarios.map( i => {
+        return new Usuario({nome: i[0], senha: i[1], admin: i[2], ativo: i[3]})
+    })
+    return usuarios
+}
 function criarMonitoramento(sensores, alertas){
     return new Monitoramento({sensores, alertas})
 }
 
 function seed(){
+    const usuarios = criarUsuarios()
     const regioes = criarRegioes()
     const leituras = criarLeituras()
     const sensores = criarSensores(regioes)
     const alertas = criarAlertas(leituras,regioes)
     const monitoramento = criarMonitoramento(sensores, alertas)
     return {
+        usuarios,
         regioes,
         leituras,
         sensores,

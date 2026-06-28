@@ -5,9 +5,7 @@ export default class AlertaController{
 
     constructor(alertas){
         this.#alertas = {}
-        for(let alerta of alertas){
-            this.#alertas[alerta.id] = alerta
-        }
+        this.criarAlertas(alertas)
     }
 
     listarAlertas(){
@@ -17,13 +15,20 @@ export default class AlertaController{
     }
 
     criarAlerta({leitura, regiao, mensagem}){
-        const novoAlerta = new Alerta(leitura, regiao, mensagem)
+        if (!(leitura instanceof Leitura)) throw new Error("O parâmetro leitura deve ser uma instância da classe Leitura")
+        const novoAlerta = new Alerta({leitura: leitura, regiao: regiao, mensagem: mensagem})
         this.#alertas[novoAlerta.id] = novoAlerta
+    }
+    
+    criarAlertas(alertas){
+        if (!(Array.isArray(alertas))) throw new Error("O parâmetro deve ser uma lista!")
+        for(let alerta of alertas){
+            this.criarAlerta(alerta)
+        }
     }
 
     buscarAlerta(id){
-        if(id < Alerta.id && id >= 0){
-            return this.#alertas[id]
-        }
+        if(id < Alerta.id && id >= 0) throw new Error("O Id deve ser maior que zero e válido")
+        return this.#alertas[id]
     }
 }

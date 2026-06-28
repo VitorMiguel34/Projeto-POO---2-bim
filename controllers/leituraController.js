@@ -5,9 +5,7 @@ export default class LeituraController{
 
     constructor(leituras){
         this.#leituras = {}
-        for(let leitura of leituras){
-            this.#leituras[leitura.id] = leitura
-        }
+        this.criarLeituras(leituras)
     }
 
     listarLeituras(){
@@ -16,9 +14,18 @@ export default class LeituraController{
         }
     }
 
-    adicionarLeitura({sensor, valorRegistrado}){
-        const novaLeitura = new Leitura(sensor, valorRegistrado)
+    criarLeitura({mensagem, valorRegistrado}){
+        if (!(typeof mensagem === 'string')) throw new Error("O parâmetro mensagem deve ser uma mensagem (str!)")
+        if (!(typeof valorRegistrado === 'number') || valorRegistrado <= 0) throw new Error("O parâmetro valor registrado deve ser um número válido")
+        const novaLeitura = new Leitura({mensagem: mensagem, valorRegistrado: valorRegistrado})
         this.#leituras[novaLeitura.id] = novaLeitura
+    }
+
+    criarLeituras(leituras){
+        if (!(Array.isArray(leituras))) throw new Error("O parâmetro leituras deve ser uma lista")
+        for(let leitura of leituras){
+            this.criarLeitura(leitura)
+        }
     }
 
     buscarLeitura(id){
@@ -26,4 +33,6 @@ export default class LeituraController{
             return this.#leituras[id]
         }
     }
+
+    
 }

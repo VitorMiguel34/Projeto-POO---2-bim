@@ -17,8 +17,16 @@ export default class SensorController{
     }
 
     criarSensor({tipo, ativo, regiao}){
-        const novoSensor = new Sensor(tipo,ativo,regiao)
+        const novoSensor = new Sensor({"tipo" : tipo, "ativo" : ativo, "regiao" : regiao})
         this.#sensores[novoSensor.id] = novoSensor
+    }
+
+    criarSensores(sensores){
+        if (!(Array.isArray(sensores))) throw new Error('O parâmetro deve ser uma lista')
+        for(let sensor of sensores){
+            this.criarSensor(sensor)
+        }
+
     }
 
     buscarSensor(id){
@@ -26,4 +34,5 @@ export default class SensorController{
             return this.#sensores[id]
         }
     }
+
 }

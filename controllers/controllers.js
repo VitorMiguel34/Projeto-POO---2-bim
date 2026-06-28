@@ -3,7 +3,7 @@ import LeituraController from './leituraController.js'
 import AlertaController from './alertaController.js'
 import SensorController from './sensorController.js'
 import seed from '../utils/seed.js'
-
+import prompt from 'prompt-sync'
 
 class Controller{
     #usuarios
@@ -12,6 +12,7 @@ class Controller{
     #leituras
     #alertas
     constructor(usuarios, sensores, leituras, alertas){
+    // recebe listas de obj ou apenas um
         this.#usuarios = new UsuarioController(usuarios)
         this.#sensores = new SensorController(sensores)
         this.#leituras = new LeituraController(leituras)
@@ -25,6 +26,6 @@ class Controller{
 
 export default function main(){
     const dados = seed()
-    const controller = new Controller([], dados.sensores, dados.leituras, dados.alertas)
+    const controller = new Controller(dados.usuarios, dados.sensores, dados.leituras, dados.alertas)
     controller.apresentarMenu()
 }

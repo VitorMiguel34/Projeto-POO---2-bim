@@ -1,13 +1,52 @@
-export default class Usuario {
-    static id = 0
-
-    constructor({nome, login, senha, isAdmin = false, ativo = true}) {
-        this.id = Usuario.id
-        Usuario.id += 1
-        this.nome = nome
-        this.login = login
-        this.senha = senha
-        this.isAdmin = isAdmin
-        this.ativo = ativo
+class Usuario{
+    #nome
+    #ativo
+    #senha
+    #admin
+    static #id = 0
+    constructor({nome, ativo = false, senha, admin = false}){
+        Usuario.#id += 1
+        this.id = Usuario.#id
+        this.#nome = nome
+        this.#ativo = ativo
+        this.#senha = senha
+        this.#admin = admin
     }
+
+    get nome(){
+        return this.#nome
+    }
+
+    get ativo(){
+        return this.#ativo
+    }
+
+    get admin(){
+        return this.#admin
+    }
+
+    compararSenha(tentativa){
+        return tentativa === this.#senha
+    }
+
+    desativar(){
+        if (this.ativo){ 
+            this.#ativo = false
+            return {log : `O usuário ${this.nome} foi desativado`, data: new Date()}
+        } else {
+            return {log : `O usuário ${this.nome} já está desativado`, data: new Date()}
+        }
+    }
+
+    ativar(){
+        if (!this.ativo){
+            this.#ativo = true
+            return {log : `O usuário ${this.nome} foi ativado`, data: new Date()}
+        } else {
+            return {log : `O usuário ${this.nome} já está ativado`, data: new Date()}
+        }
+    }
+    
 }
+
+export default Usuario
