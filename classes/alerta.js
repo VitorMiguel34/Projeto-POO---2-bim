@@ -28,7 +28,7 @@ export default class Alerta{
 
     set mensagem(novaMensagem){
         if(typeof novaMensagem != "string"){
-            throw new Error("Erro! O campo 'mensagem' espera uma string")
+            throw new Error("Erro! mensagem espera uma string")
         }
         this.#mensagem = novaMensagem
     }

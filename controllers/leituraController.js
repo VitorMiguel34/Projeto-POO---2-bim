@@ -1,38 +1,42 @@
 import Leitura from '../classes/leitura.js'
 
-export default class LeituraController{
+export default class LeituraController {
     #leituras
-
-    constructor(leituras){
+    constructor(leituras) {
         this.#leituras = {}
-        this.criarLeituras(leituras)
+        for (let leitura of leituras) {
+            this.#leituras[leitura.id] = leitura
+        }
     }
 
-    listarLeituras(){
-        for(let leitura of Object.values(this.#leituras)){
+    listarLeituras() {
+        for (let leitura of Object.values(this.#leituras)) {
             leitura.informacoes()
         }
     }
 
-    criarLeitura({mensagem, valorRegistrado}){
-        if (!(typeof mensagem === 'string')) throw new Error("O parâmetro mensagem deve ser uma mensagem (str!)")
-        if (!(typeof valorRegistrado === 'number') || valorRegistrado <= 0) throw new Error("O parâmetro valor registrado deve ser um número válido")
-        const novaLeitura = new Leitura({mensagem: mensagem, valorRegistrado: valorRegistrado})
-        this.#leituras[novaLeitura.id] = novaLeitura
-    }
 
-    criarLeituras(leituras){
-        if (!(Array.isArray(leituras))) throw new Error("O parâmetro leituras deve ser uma lista")
-        for(let leitura of leituras){
-            this.criarLeitura(leitura)
+    criarLeitura({ mensagem, valorRegistrado }) {
+        if (typeof mensagem !== 'string' || mensagem.trim() === '') {
+            throw new Error("O parâmetro mensagem deve ser um texto válido.")
+        }
+        if (typeof valorRegistrado !== 'number' || valorRegistrado <= 0) {
+            throw new Error("O parâmetro valor registrado deve ser um número maior que zero.")
+        }
+        const novaLeitura = new Leitura({ mensagem: mensagem, valorRegistrado: valorRegistrado })
+        this.#leituras[novaLeitura.id] = novaLeitura
+        return {
+            sucesso: true,
+            registro: novaLeitura,
+            log: `Nova leitura registrada com sucesso: "${mensagem}" [Valor: ${valorRegistrado}]`,
+            timestamp: new Date()
         }
     }
 
-    buscarLeitura(id){
-        if(id < Leitura.id && id >= 0){
+    buscarLeitura(id) {
+        if (id in this.#leituras) {
             return this.#leituras[id]
         }
+        throw new Error(`Leitura com ID ${id} não foi encontrada.`)
     }
-
-    
 }

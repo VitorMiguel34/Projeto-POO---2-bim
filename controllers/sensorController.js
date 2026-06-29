@@ -5,9 +5,7 @@ export default class SensorController{
 
     constructor(sensores){
         this.#sensores = {}
-        for(let sensor of sensores){
-            this.#sensores[sensor.id] = sensor
-        }
+        this.criarSensores(sensores)
     }
 
     listarSensores(){

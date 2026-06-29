@@ -62,6 +62,7 @@ function criarUsuarios(){
     })
     return usuarios
 }
+
 function criarMonitoramento(sensores, alertas){
     return new Monitoramento({sensores, alertas})
 }
