@@ -1,16 +1,26 @@
 export default class Leitura{
-    static id = 0
+    static #contadorid = 0
     #dataHora
-
+    #mensagem
+    #id
     constructor({valorRegistrado, mensagem}){
-        this.id = Leitura.id
-        Leitura.id += 1
+        this.#id = Leitura.#contadorid
+        Leitura.#contadorid += 1
         this.valorRegistrado = valorRegistrado
         this.#dataHora = new Date()
+        this.#mensagem = mensagem
+    }
+
+    get id(){
+        return this.#id
     }
 
     get data(){
         return this.#dataHora.toLocaleDateString("PT-BR")
+    }
+
+    get mensagem(){
+        return this.#mensagem
     }
 
     get hora(){
@@ -19,8 +29,8 @@ export default class Leitura{
 
     informacoes(){
         console.log(`Leitura ${this.id}`)
-        console.log(`Sensor: ${this.sensor.id}`)
         console.log(`Valor registrado: ${this.valorRegistrado}`)
         console.log(`Data: ${this.data}. Hora: ${this.hora}`)
+        console.log(`Mensagem: ${this.mensagem || "Nenhuma mensagem gravada"}`)
     }
 }

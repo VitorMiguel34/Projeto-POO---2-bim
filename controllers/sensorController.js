@@ -5,9 +5,7 @@ export default class SensorController{
 
     constructor(sensores){
         this.#sensores = {}
-        for(let sensor of sensores){
-            this.#sensores[sensor.id] = sensor
-        }
+        this.criarSensores(sensores)
     }
 
     listarSensores(){
@@ -17,13 +15,28 @@ export default class SensorController{
     }
 
     criarSensor({tipo, ativo, regiao}){
-        const novoSensor = new Sensor(tipo,ativo,regiao)
+        const novoSensor = new Sensor({"tipo" : tipo, "ativo" : ativo, "regiao" : regiao})
         this.#sensores[novoSensor.id] = novoSensor
     }
 
-    buscarSensor(id){
-        if(id < Sensor.id && id >= 0){
-            return this.#sensores[id]
+    criarSensores(sensores){
+        if (!(Array.isArray(sensores))) throw new Error('O parâmetro deve ser uma lista')
+        for(let sensor of sensores){
+            this.criarSensor(sensor)
         }
+
     }
+
+    buscarSensor(id) {
+        if (id in this.#sensores) {
+            return {
+                sucesso: true,
+                registro: this.#sensores[id],
+                log: `Sensor com ID ${id} recuperado com sucesso do sistema.`,
+                timestamp: new Date()
+            }
+        }
+        throw new Error(`Sensor com ID ${id} não foi encontrado no sistema.`)
+    }
+
 }

@@ -1,17 +1,21 @@
 export default class Alerta{
-    static id = 0
+    static #contadorid = 0
     #dataHora
     #leitura
     #mensagem
     #regiao
-
+    #id
     constructor({mensagem, leitura, regiao}){
-        this.id = Alerta.id
-        Alerta.id += 1
+        this.#id = Alerta.#contadorid
+        Alerta.#contadorid += 1
         this.#mensagem = mensagem
         this.#leitura = leitura
         this.#regiao = regiao
         this.#dataHora = new Date()
+    }
+
+    get id(){
+        return this.#id
     }
 
     get data(){
@@ -28,14 +32,14 @@ export default class Alerta{
 
     set mensagem(novaMensagem){
         if(typeof novaMensagem != "string"){
-            throw new Error("Erro! O campo 'mensagem' espera uma string")
+            throw new Error("Erro! mensagem espera uma string")
         }
         this.#mensagem = novaMensagem
     }
 
     informacoes(){
         console.log(`ID do alerta: ${this.id}`)
-        console.log(`Região: ${this.#regiao}`)
+        console.log(`Região: ${this.#regiao.nome}`)
         console.log(`Mensagem: ${this.mensagem}\n`)
     }
 }
