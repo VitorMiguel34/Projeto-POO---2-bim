@@ -4,14 +4,18 @@ export default class Alerta{
     #leitura
     #mensagem
     #regiao
-
+    #id
     constructor({mensagem, leitura, regiao}){
-        this.id = Alerta.id
+        this.#id = Alerta.id
         Alerta.id += 1
         this.#mensagem = mensagem
         this.#leitura = leitura
         this.#regiao = regiao
         this.#dataHora = new Date()
+    }
+
+    get id(){
+        return this.#id
     }
 
     get data(){

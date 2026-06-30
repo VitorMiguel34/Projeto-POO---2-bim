@@ -3,14 +3,19 @@ class Usuario{
     #ativo
     #senha
     #admin
+    #id
     static #id = 0
     constructor({nome, ativo = false, senha, admin = false}){
         Usuario.#id += 1
-        this.id = Usuario.#id
+        this.#id = Usuario.#id
         this.#nome = nome
         this.#ativo = ativo
         this.#senha = senha
         this.#admin = admin
+    }
+
+    get id(){
+        return this.#id
     }
 
     get nome(){

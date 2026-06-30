@@ -2,11 +2,15 @@ export default class Regiao {
     static id = 0
     #nome
     #descricao
+    #id
     constructor({ nome, descricao }) {
-        this.id = Regiao.id
+        this.#id = Regiao.id
         Regiao.id += 1
         this.#nome = nome
         this.#descricao = descricao
+    }
+    get id(){
+        return this.#id
     }
 
     get nome() {
