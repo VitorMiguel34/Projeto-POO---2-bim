@@ -141,7 +141,7 @@ class Controller {
         const senha = lerSenhaInvisivel("Digite sua senha: ")
 
         try {
-            this.#usuarios.registrarUsuario(nome, senha)
+            this.#usuarios.adicionarUsuario({nome: nome, senha: senha, admin: false, ativo: true})
             console.log(`\n Conta criada com sucesso! Você já pode fazer login, ${nome}.`)
         } catch (error) {
             console.log(`\n Falha ao criar conta: ${error.message}`)
