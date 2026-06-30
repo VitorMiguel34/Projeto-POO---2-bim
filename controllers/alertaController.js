@@ -1,5 +1,5 @@
 import Alerta from '../classes/alerta.js'
-import Leitrua from '../classes/leitura.js'
+import Leitura from '../classes/leitura.js'
 
 export default class AlertaController{
     #alertas
@@ -28,8 +28,15 @@ export default class AlertaController{
         }
     }
 
-    buscarAlerta(id){
-        if(id > Alerta.id && id <= 0) throw new Error("O Id deve ser maior que zero e válido")
-        return this.#alertas[id]
+    buscarAlerta(id) {
+        if (id in this.#alertas) {
+            return {
+                sucesso: true,
+                registro: this.#alertas[id],
+                log: `Alerta com ID ${id} recuperado com sucesso do sistema.`,
+                timestamp: new Date()
+            }
+        }
+        throw new Error(`Alerta com ID ${id} não foi encontrado no sistema.`)
     }
 }

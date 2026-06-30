@@ -35,8 +35,13 @@ export default class LeituraController {
 
     buscarLeitura(id) {
         if (id in this.#leituras) {
-            return this.#leituras[id]
-        }
-        throw new Error(`Leitura com ID ${id} não foi encontrada.`)
+            return {
+                sucesso: true,
+                registro: this.#leituras[id],
+                log: `Leitura com ID ${id} recuperada com sucesso do sistema.`,
+                timestamp: new Date()
+            }
+        } 
+        throw new Error(`Leitura com ID ${id} não foi encontrada no sistema.`)
     }
 }

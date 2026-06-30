@@ -27,10 +27,16 @@ export default class SensorController{
 
     }
 
-    buscarSensor(id){
-        if(id < Sensor.id && id >= 0){
-            return this.#sensores[id]
+    buscarSensor(id) {
+        if (id in this.#sensores) {
+            return {
+                sucesso: true,
+                registro: this.#sensores[id],
+                log: `Sensor com ID ${id} recuperado com sucesso do sistema.`,
+                timestamp: new Date()
+            }
         }
+        throw new Error(`Sensor com ID ${id} não foi encontrado no sistema.`)
     }
 
 }

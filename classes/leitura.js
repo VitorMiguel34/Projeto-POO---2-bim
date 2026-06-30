@@ -24,9 +24,8 @@ export default class Leitura{
 
     informacoes(){
         console.log(`Leitura ${this.id}`)
-        console.log(`Sensor: ${this.sensor.id}`)
         console.log(`Valor registrado: ${this.valorRegistrado}`)
         console.log(`Data: ${this.data}. Hora: ${this.hora}`)
-        console.log(`Mensagem: ${this.mensagem}`)
+        console.log(`Mensagem: ${this.mensagem || "Nenhuma mensagem gravada"}`)
     }
 }
