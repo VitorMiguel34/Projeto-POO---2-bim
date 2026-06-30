@@ -1,11 +1,11 @@
 export default class Leitura{
-    static id = 0
+    static #contadorid = 0
     #dataHora
     #mensagem
     #id
     constructor({valorRegistrado, mensagem}){
-        this.id = Leitura.id
-        Leitura.#id += 1
+        this.#id = Leitura.#contadorid
+        Leitura.#contadorid += 1
         this.valorRegistrado = valorRegistrado
         this.#dataHora = new Date()
         this.#mensagem = mensagem

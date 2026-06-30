@@ -1,21 +1,21 @@
 export default class Sensor {
-    static id = 0
+    static #contadorid = 0
     #id
     #ativo
     #regiao
     #leituras
     #tipo
     constructor({ tipo, ativo = false, regiao }) {
-        this.#id = Sensor.id;
-        Sensor.id += 1;
-        this.#tipo = tipo;
-        this.#ativo = ativo;
-        this.#regiao = regiao;
-        this.#leituras = {};
+        this.#id = Sensor.#contadorid
+        Sensor.#contadorid += 1
+        this.#tipo = tipo
+        this.#ativo = ativo
+        this.#regiao = regiao
+        this.#leituras = {}
     }
 
     get id(){ 
-        return this.#id;
+        return this.#id
     }
 
     get tipo(){
@@ -37,18 +37,18 @@ export default class Sensor {
         this.#leituras[novaLeitura.id] = novaLeitura
     }
 
-    informações() {
+    informacoes() { 
         const listaDeLeituras = Object.values(this.#leituras)
 
         if (listaDeLeituras.length === 0) {
-            return {log: `Sensor ${this.#id} - ${this.#tipo}: Nenhuma leitura registrada até o momento.`}
+            console.log(`Sensor ${this.id} - ${this.tipo}: Nenhuma leitura registrada até o momento.`)
+            return
         }
 
-        console.log(`Leituras do Sensor ${this.#id} (${this.#tipo})`)
-        listaDeLeituras.map(leitura => {
-            return {log: `Leitura ID: ${leitura.id} | Dados:`, leitura}
+        console.log(`Leituras do Sensor ${this.id} (${this.tipo})`)
+        listaDeLeituras.forEach(leitura => {
+            console.log(` - Leitura ID: ${leitura.id} | Dados:`, leitura)
         })
-        return {log: `Sensor ${this.#id} - ${this.#tipo}: ${listaDeLeituras.length} leituras registradas.`,
-        leituras: listaDeLeituras}
+        console.log(`Total: ${listaDeLeituras.length} leituras registradas.\n`)
     }
 }

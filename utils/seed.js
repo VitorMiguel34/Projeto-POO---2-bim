@@ -23,7 +23,7 @@ function criarLeituras(){
     const informacoes = JSON.parse(fs.readFileSync(path.join(dadosDir, 'leituras.json')))
     return informacoes.map((i) => ({
         "valorRegistrado": i[0],
-        "mensagem": "Leitura inicializada por semente"
+        "mensagem": "Leitura inicializada por seed"
     }))
 }
 

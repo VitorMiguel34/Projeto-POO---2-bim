@@ -17,7 +17,7 @@ export default class AlertaController{
     }
 
     criarAlerta({leituraId, regiao, mensagem}){ 
-        const leitura = this.#leituraController.buscarLeitura(leituraId)
+        const leitura = this.#leituraController.buscarLeitura(leituraId).registro
         if (!(leitura instanceof Leitura)) throw new Error("O parâmetro leitura deve ser uma instância da classe Leitura")
         const novoAlerta = new Alerta({leitura: leitura, regiao: regiao, mensagem: mensagem})
         this.#alertas[novoAlerta.id] = novoAlerta
@@ -31,7 +31,14 @@ export default class AlertaController{
     }
 
     buscarAlerta(id){
-        if(id > Alerta.id && id <= 0) throw new Error("O Id deve ser maior que zero e válido")
-        return this.#alertas[id]
+        if (id in this.#alertas) {
+            return {
+                sucesso: true,
+                registro: this.#alertas[id],
+                log: `Alerta com ID ${id} recuperada com sucesso do sistema.`,
+                timestamp: new Date()
+            }
+        } 
+        throw new Error(`Alerta com ID ${id} não foi encontrada no sistema.`)
     }
 }

@@ -1,13 +1,13 @@
 export default class Alerta{
-    static id = 0
+    static #contadorid = 0
     #dataHora
     #leitura
     #mensagem
     #regiao
     #id
     constructor({mensagem, leitura, regiao}){
-        this.#id = Alerta.id
-        Alerta.id += 1
+        this.#id = Alerta.#contadorid
+        Alerta.#contadorid += 1
         this.#mensagem = mensagem
         this.#leitura = leitura
         this.#regiao = regiao
@@ -39,7 +39,7 @@ export default class Alerta{
 
     informacoes(){
         console.log(`ID do alerta: ${this.id}`)
-        console.log(`Região: ${this.#regiao}`)
+        console.log(`Região: ${this.#regiao.nome}`)
         console.log(`Mensagem: ${this.mensagem}\n`)
     }
 }

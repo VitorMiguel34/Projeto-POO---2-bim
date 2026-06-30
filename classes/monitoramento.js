@@ -4,8 +4,8 @@ export default class Monitoramento {
     #alertas
     #id
     constructor({ sensores, alertas }) {
-        this.#id = Monitoramento.id
-        Monitoramento.id += 1
+        this.#id = Monitoramento.#contadorid
+        Monitoramento.#contadorid += 1
         this.#sensores = sensores
         this.#alertas = alertas
     }
@@ -13,7 +13,7 @@ export default class Monitoramento {
     get id(){
         return this.#id
     }
-    
+
     get sensores() {
         return this.#sensores
     }

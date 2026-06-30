@@ -4,10 +4,10 @@ class Usuario{
     #senha
     #admin
     #id
-    static #id = 0
-    constructor({nome, ativo = false, senha, admin = false}){
-        Usuario.#id += 1
-        this.#id = Usuario.#id
+    static #contadorid = 0
+    constructor({nome, ativo = true, senha, admin = false}){
+        Usuario.#contadorid += 1
+        this.#id = Usuario.#contadorid
         this.#nome = nome
         this.#ativo = ativo
         this.#senha = senha

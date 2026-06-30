@@ -4,7 +4,7 @@ export default class LeituraController {
     #leituras
     constructor(leituras) {
         this.#leituras = {}
-        this.listarLeituras(leituras)
+        this.criarLeituras(leituras)
     }
 
     listarLeituras() {
@@ -15,9 +15,6 @@ export default class LeituraController {
 
 
     criarLeitura({ mensagem, valorRegistrado }) {
-        if (typeof mensagem !== 'string' || mensagem.trim() === '') {
-            throw new Error("O parâmetro mensagem deve ser um texto válido.")
-        }
         if (typeof valorRegistrado !== 'number' || valorRegistrado <= 0) {
             throw new Error("O parâmetro valor registrado deve ser um número maior que zero.")
         }
@@ -28,6 +25,13 @@ export default class LeituraController {
             registro: novaLeitura,
             log: `Nova leitura registrada com sucesso: "${mensagem}" [Valor: ${valorRegistrado}]`,
             timestamp: new Date()
+        }
+    }
+
+    criarLeituras(leituras){
+        if(!Array.isArray(leituras)) { throw new Error("O parâmetro deve ser uma lista!")}
+        for(let leitura of leituras){
+            this.criarLeitura(leitura)
         }
     }
 
