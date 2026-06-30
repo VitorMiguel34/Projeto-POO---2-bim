@@ -4,9 +4,7 @@ export default class LeituraController {
     #leituras
     constructor(leituras) {
         this.#leituras = {}
-        for (let leitura of leituras) {
-            this.#leituras[leitura.id] = leitura
-        }
+        this.listarLeituras(leituras)
     }
 
     listarLeituras() {

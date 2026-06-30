@@ -13,9 +13,9 @@ class Controller {
     #usuarioLogado 
     constructor(usuarios, sensores, leituras, alertas) {
         this.#usuarios = new UsuarioController(usuarios)
+        this.#leituras = new LeituraController(leituras) 
         this.#sensores = new SensorController(sensores)
-        this.#leituras = new LeituraController(leituras)
-        this.#alertas = new AlertaController(alertas)
+        this.#alertas = new AlertaController(alertas, this.#leituras) 
         this.#usuarioLogado = null
     }
 
@@ -46,7 +46,7 @@ class Controller {
             case "0":
                 return false; 
             default:
-                console.log("\n❌ Opção inválida!");
+                console.log("\n Opção inválida!");
         }
         return true;
     }

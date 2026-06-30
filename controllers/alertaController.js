@@ -3,9 +3,10 @@ import Leitura from '../classes/leitura.js'
 
 export default class AlertaController{
     #alertas
-
-    constructor(alertas){
+    #leituraController
+    constructor(alertas, leituraController){ 
         this.#alertas = {}
+        this.#leituraController = leituraController
         this.criarAlertas(alertas)
     }
 
@@ -15,7 +16,8 @@ export default class AlertaController{
         }
     }
 
-    criarAlerta({leitura, regiao, mensagem}){
+    criarAlerta({leituraId, regiao, mensagem}){ 
+        const leitura = this.#leituraController.buscarLeitura(leituraId)
         if (!(leitura instanceof Leitura)) throw new Error("O parâmetro leitura deve ser uma instância da classe Leitura")
         const novoAlerta = new Alerta({leitura: leitura, regiao: regiao, mensagem: mensagem})
         this.#alertas[novoAlerta.id] = novoAlerta
@@ -28,15 +30,8 @@ export default class AlertaController{
         }
     }
 
-    buscarAlerta(id) {
-        if (id in this.#alertas) {
-            return {
-                sucesso: true,
-                registro: this.#alertas[id],
-                log: `Alerta com ID ${id} recuperado com sucesso do sistema.`,
-                timestamp: new Date()
-            }
-        }
-        throw new Error(`Alerta com ID ${id} não foi encontrado no sistema.`)
+    buscarAlerta(id){
+        if(id > Alerta.id && id <= 0) throw new Error("O Id deve ser maior que zero e válido")
+        return this.#alertas[id]
     }
 }
