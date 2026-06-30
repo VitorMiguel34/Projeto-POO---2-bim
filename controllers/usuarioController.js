@@ -9,7 +9,7 @@ export default class UsuarioController {
     }
 
     adicionarUsuario({nome, senha, admin, ativo}) {
-        if (!(this.existeUsuario(nome))) { throw new Error(`O usuário ${nome} já existe no sistema.`) }
+        if ((this.existeUsuario(nome))) { throw new Error(`O usuário ${nome} já existe no sistema.`) }
         const novoUsuario = new Usuario({nome : nome, senha : senha, admin: admin, ativo: ativo})
         this.#usuarios[novoUsuario.id] = novoUsuario
     }
